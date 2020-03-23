@@ -7,10 +7,13 @@ import com.eventoapp.repository.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Collections;
 import java.util.List;
@@ -30,7 +33,13 @@ public class EventoController {
     }
 
     @RequestMapping(value="/cadastrarEvento", method = RequestMethod.POST)
-    public String salvar(Evento evento){
+    public String salvar(@Valid Evento evento,BindingResult bindingResult, RedirectAttributes attributes){
+        if(bindingResult.hasErrors()){
+            attributes.addFlashAttribute("mensagem","verifique os campos");
+            return "redirect:/cadastrarEvento";
+        }
+        attributes.addFlashAttribute("mensagem","Evento adicionado");
+
         eventoRepository.save(evento);
         return "redirect:/listarEventos";
     }
@@ -49,13 +58,17 @@ public class EventoController {
         return "evento/detalheEvento";
     }
     @RequestMapping(value = "/detalhesEvento/{codigo}", method = RequestMethod.POST)
-    public String adicionarConvidado(@PathVariable ("codigo") long codigo,Convidado convidado){
+    public String adicionarConvidado(@PathVariable ("codigo") long codigo, @Valid Convidado convidado, BindingResult bindingResult, RedirectAttributes attributes){
 
-        Evento evento =eventoRepository.findByCodigo(codigo);
-
+        if(bindingResult.hasErrors()){
+            attributes.addFlashAttribute("mensagem","verifique os campos");
+            return "redirect:/detalhesEvento/{codigo}";
+        }
+        Evento evento = eventoRepository.findByCodigo(codigo);
         convidado.setEvento(evento);
         convidadoRepository.save(convidado);
 
+        attributes.addFlashAttribute("mensagem","convidado adicionado");
         return "redirect:/detalhesEvento/{codigo}";
     }
 

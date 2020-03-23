@@ -34,22 +34,10 @@
 
     </tbody>
 </table>
+
+<th:block th:include="mensagemValidacao"></th:block>
+
 <h2>Convidados</h2>
-<table class="container">
-    <th>Nome</th>
-    <th>Rg</th>
-    <tbody th:each="convidado : ${convidadoList}">
-
-    <tr>
-        <td><span th:text="${convidado.nomeConvidado}"></span></td>
-        <td><span th:text="${convidado.rg}"></span></td>
-    </tr>
-
-    </tbody>
-</table>
-
-
-
 <form method="post" class="container">
     <div class="row">
         <div class="input-field col s12">
@@ -63,6 +51,19 @@
     <button type="submit" class="waves-effect waves-light btn">Adicionar</button>
 
 </form>
+<table class="container">
+    <th>Nome</th>
+    <th>Rg</th>
+    <tbody th:each="convidado : ${convidadoList}">
+
+    <tr>
+        <td><span th:text="${convidado.nomeConvidado}"></span></td>
+        <td><span th:text="${convidado.rg}"></span></td>
+    </tr>
+
+    </tbody>
+</table>
+
 
 <script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
 </body>

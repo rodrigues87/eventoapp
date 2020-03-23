@@ -9,4 +9,5 @@ import java.util.List;
 public interface ConvidadoRepository extends CrudRepository<Convidado,String> {
     Convidado findByRg(long codigo);
     List<Convidado> findAllByEventoCodigo(long codigo);
+    Convidado findByRgAndEventoCodigo(long rg, long codigo);
 }

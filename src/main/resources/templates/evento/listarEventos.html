@@ -14,8 +14,12 @@
     <title>Listar Eventos</title>
 </head>
 <body>
+<header>
+    <th:block th:include="fragments/navbar"></th:block>
+</header>
 <h1>Listar Eventos</h1>
 <a class="waves-effect waves-light btn" href="cadastrarEvento"><i class="material-icons left">add_circle_outline</i>Novo Evento</a>
+<th:block th:include="mensagemValidacao"></th:block>
 
 <table class="container">
     <th>Código</th>
