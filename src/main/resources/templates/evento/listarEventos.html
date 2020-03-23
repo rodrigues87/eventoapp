@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <meta charset="UTF-8">
+    <title>Listar Eventos</title>
+</head>
+<body>
+<h1>Listar Eventos</h1>
+<a class="waves-effect waves-light btn" href="cadastrarEvento"><i class="material-icons left">add_circle_outline</i>Novo Evento</a>
+
+<table class="container">
+    <th>Código</th>
+    <th>Nome</th>
+    <th>Local</th>
+    <th>Data</th>
+    <th>Horário</th>
+    <tbody th:each="evento : ${eventos}">
+
+        <tr>
+
+            <td><span th:text="${evento.codigo}"></span></td>
+            <td>
+                <a th:href="${#mvc.url('EC#detalhes').arg(0,evento.codigo).build()}">
+                    <span th:text="${evento.nome}"></span>
+                </a>
+            </td>
+            <td><span th:text="${evento.local}"></span></td>
+            <td><span th:text="${evento.data}"></span></td>
+            <td><span th:text="${evento.horario}"></span></td>
+
+        </tr>
+
+    </tbody>
+</table>
+
+<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+</html>
