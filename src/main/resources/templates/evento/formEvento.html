@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="../css/styleCss.css">
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -13,11 +14,9 @@
     <title>Eventos</title>
 </head>
 <body>
+<th:block th:include="fragments/navbar"></th:block>
 
-<h1>Novo Evento</h1>
-<a class="waves-effect waves-light btn" href="listarEventos"><i class="material-icons left">list</i>Lista de Eventos</a>
-
-<form method="post" class="container">
+<form method="post" class="container formApp">
 
     <div class="row">
         <div class="input-field col s12">
@@ -30,7 +29,7 @@
             Data: <input type="date" value="" name="data">
         </div>
         <div class="input-field col s3">
-            Horário: <input type="text" value="" name="horario">
+            Horário: <input type="time" value="" name="horario">
         </div>
     </div>
 

@@ -2,7 +2,7 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     username: 'postgres'
-    password: '#mp10fi#'
+    password: '123456'
     url: 'jdbc:postgresql://localhost:5432/eventosApp'
   jpa:
     show-sql: false
