@@ -1,0 +1,35 @@
+<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Novo</a>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal left-align">
+    <div class="modal-content">
+        <form method="post" class="">
+
+            <div class="row">
+                <div class="input-field col s12">
+                    Nome: <input type="text" value="" name="nome">
+                </div>
+                <div class="input-field col s6">
+                    Local: <input type="text" value="" name="local">
+                </div>
+                <div class="input-field col s3">
+                    Data: <input type="date" value="" name="data">
+                </div>
+                <div class="input-field col s3">
+                    Horário: <input type="time" value="" name="horario">
+                </div>
+            </div>
+
+            <div class="row right-align">
+            <button type="submit" class="waves-effect waves-light btn">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems);
+    });
+
+</script>

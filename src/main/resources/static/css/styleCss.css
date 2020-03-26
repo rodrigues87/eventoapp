@@ -1,0 +1,36 @@
+.detalhesEvento{
+    box-shadow: 0px 0px 5px grey;
+    margin-top: 10px;
+}
+.formApp{
+    box-shadow: 0px 0px 5px grey;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 60px;
+}
+.tabelaConvidado{
+    width: 50%;
+}
+.barraAcoes{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e7ebf3;
+    display: flex;
+    flew-wrap: wrap;
+    justify-content: left;
+    align-items: r;
+}
+.barraAcoes .col{
+    padding: 0 0;
+}
+td {
+    text-align: center;
+    vertical-align: middle;
+}
+th{
+    text-align: center;
+    vertical-align: middle;
+
+}
+

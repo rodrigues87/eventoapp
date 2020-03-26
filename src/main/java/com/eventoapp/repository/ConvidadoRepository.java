@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface ConvidadoRepository extends CrudRepository<Convidado,String> {
-    Convidado findByRg(long codigo);
+    Convidado findByRg(String rg);
     List<Convidado> findAllByEventoCodigo(long codigo);
     Convidado findByRgAndEventoCodigo(long rg, long codigo);
 }

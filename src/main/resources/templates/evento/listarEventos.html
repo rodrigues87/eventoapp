@@ -6,12 +6,15 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-    <link rel="stylesheet" href="../css/styleCss.css">
-
+    <link rel="stylesheet" href="css/styleCss.css">
+    <link rel="stylesheet" href="css/alert.css">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
 
     <meta charset="UTF-8">
+
+    <script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
     <title>Listar Eventos</title>
 </head>
 <body>
@@ -19,14 +22,18 @@
     <th:block th:include="fragments/navbar"></th:block>
 </header>
 
-<th:block th:include="mensagemValidacao"></th:block>
 
-<table class="container">
+<div class="container">
+    <p></p>
+    <div class="right-align"> <th:block th:include="fragments/novoEvento"></th:block></div>
+
+    <table class="detalhesEvento">
     <th>Código</th>
     <th>Nome</th>
     <th>Local</th>
     <th>Data</th>
     <th>Horário</th>
+    <th>Deletar</th>
     <tbody th:each="evento : ${eventos}">
 
         <tr>
@@ -40,12 +47,19 @@
             <td><span th:text="${evento.local}"></span></td>
             <td><span th:text="${evento.data}"></span></td>
             <td><span th:text="${evento.horario}"></span></td>
+            <td  style="text-align: center" ><a th:href="${#mvc.url('EC#deletarEvento').arg(0,evento.codigo).build()}">
+                <i class="material-icons">delete</i>
+            </a></td>
 
         </tr>
 
     </tbody>
 </table>
 
-<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+    <th:block th:include="fragments/mensagemValidacao"></th:block>
+
+
+</div>
+
 </body>
 </html>

@@ -5,78 +5,80 @@
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css" media="screen,projection"/>
     <link rel="stylesheet" href="../css/styleCss.css">
+    <link rel="stylesheet" href="../css/alert.css">
+
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
 
+    <meta charset="UTF-8">
     <meta charset="UTF-8">
     <title>EVENTO</title>
 </head>
 <body>
 <th:block th:include="fragments/navbar"></th:block>
 
+<div class="container">
 
-<table class="container detalhesEvento">
-    <th>Código</th>
-    <th>Nome</th>
-    <th>Local</th>
-    <th>Data</th>
-    <th>Horário</th>
-    <tbody>
-    <tr>
-        <td th:text="${evento.codigo}">link</td>
-        <td th:text="${evento.nome}"></td>
-        <td th:text="${evento.local}"></td>
-        <td th:text="${evento.data}"></td>
-        <td th:text="${evento.horario}"></td>
-    </tr>
+    <table class="detalhesEvento">
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Local</th>
+        <th>Data</th>
+        <th>Horário</th>
+        <tbody>
+        <tr>
+            <td th:text="${evento.codigo}">link</td>
+            <td th:text="${evento.nome}"></td>
+            <td th:text="${evento.local}"></td>
+            <td th:text="${evento.data}"></td>
+            <td th:text="${evento.horario}"></td>
+        </tr>
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
-<p></p>
-<th:block th:include="mensagemValidacao"></th:block>
+    <p></p>
 
-<div class="row container red lighten-2">
-    <div class="col s12 white-text"><h5>CONVIDADOS</h5></div>
-</div>
-<div class="row container">
-    <div class="col s4">
-        <form method="post" >
-            <div class="row">
-                <div class="input-field col s12">
-                    Nome: <input type="text" value="" name="nomeConvidado">
-                </div>
-                <div class="input-field col s12">
-                    RG: <input type="text" value="" name="rg">
-                </div>
-                <div class="input-field col s3">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Adicionar
-                        <i class="material-icons right">send</i>
-                    </button>
-                </div>
+    <div class="detalhesEvento">
+        <div class="row red lighten-2">
+            <div class="col s12 white-text"><h5>CONVIDADOS</h5></div>
+        </div>
+        <div class="">
+            <p></p>
+            <div class="right-align">
+                <th:block th:include="fragments/novoConvidado"></th:block>
             </div>
-        </form>
-    </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <table>
+                    <th>Nome</th>
+                    <th>Rg</th>
+                    <th>Deletar</th>
+                    <tbody th:each="convidado : ${convidadoList}">
 
-    <div class="col s5">
-        <table>
-            <th>Nome</th>
-            <th>Rg</th>
-            <tbody th:each="convidado : ${convidadoList}">
+                    <tr>
+                        <td><span th:text="${convidado.nomeConvidado}"></span></td>
+                        <td><span th:text="${convidado.rg}"></span></td>
 
-            <tr>
-                <td><span th:text="${convidado.nomeConvidado}"></span></td>
-                <td><span th:text="${convidado.rg}"></span></td>
-            </tr>
+                        <td style="text-align: center"><a
+                                th:href="${#mvc.url('EC#deletarConvidado').arg(0,convidado.rg).arg(1,evento.codigo).build()}">
+                            <i class="material-icons">delete</i>
+                        </a></td>
 
-            </tbody>
-        </table>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 
+<th:block th:include="fragments/mensagemValidacao"></th:block>
 
-<script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
 </body>
 </html>

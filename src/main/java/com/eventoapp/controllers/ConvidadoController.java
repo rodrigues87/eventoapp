@@ -2,6 +2,7 @@ package com.eventoapp.controllers;
 
 
 import com.eventoapp.models.Convidado;
+import com.eventoapp.models.Evento;
 import com.eventoapp.repository.ConvidadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,11 +34,10 @@ public class ConvidadoController {
         return "convidado/listarConvidados";
     }
     @RequestMapping(value = "/detalhesConvidado/{codigo}", method = RequestMethod.GET)
-    public String detalhes(@PathVariable ("codigo") long rg, Model model){
+    public String detalhes(@PathVariable ("codigo") String rg, Model model){
         Convidado convidado =convidadoRepository.findByRg(rg);
         model.addAttribute("convidado", convidado);
         return "convidado/detalheConvidado";
     }
-
 
 }

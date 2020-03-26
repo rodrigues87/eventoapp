@@ -27,16 +27,12 @@ public class EventoController {
     @Autowired
     ConvidadoRepository convidadoRepository;
 
-    @RequestMapping(value="/cadastrarEvento", method = RequestMethod.GET)
-    public String form(){
-        return "evento/formEvento";
-    }
 
-    @RequestMapping(value="/cadastrarEvento", method = RequestMethod.POST)
+    @RequestMapping(value="/listarEventos", method = RequestMethod.POST)
     public String salvar(@Valid Evento evento,BindingResult bindingResult, RedirectAttributes attributes){
         if(bindingResult.hasErrors()){
             attributes.addFlashAttribute("mensagem","verifique os campos");
-            return "redirect:/cadastrarEvento";
+            return "redirect:/listarEventos";
         }
         attributes.addFlashAttribute("mensagem","Evento adicionado");
 
@@ -70,6 +66,19 @@ public class EventoController {
 
         attributes.addFlashAttribute("mensagem","convidado adicionado");
         return "redirect:/detalhesEvento/{codigo}";
+    }
+
+    @RequestMapping("/deletarEvento")
+    public String deletarEvento(long codigo){
+        Evento evento = eventoRepository.findByCodigo(codigo);
+        eventoRepository.delete(evento);
+        return "redirect:/listarEventos";
+    }
+    @RequestMapping("/deletarConvidado")
+    public String deletarConvidado(String rg,long codigo){
+        Convidado convidado = convidadoRepository.findByRg(rg);
+        convidadoRepository.delete(convidado);
+        return "redirect:/detalhesEvento/"+codigo;
     }
 
 }
