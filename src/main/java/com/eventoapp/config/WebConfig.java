@@ -16,8 +16,8 @@ import java.util.concurrent.TimeUnit;
 public class WebConfig implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/index").setViewName("index");
-        registry.addViewController("/").setViewName("index");
+        registry.addViewController("/listarEventos").setViewName("listarEventos");
+        registry.addViewController("/").setViewName("listarEventos");
 
     }
 
